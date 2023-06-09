@@ -6,10 +6,10 @@
 <form action="{{route('login')}}" method="post">
     @csrf
     @method('POST')
-    <label>Username</label>
+    <label>Gebruikersnaam</label>
     <input type="text" name="username">
     <br>
-    <label>Password</label>
+    <label>wachtwoord</label>
     <input type="password" name="password">
     <br>
     <input type="submit">

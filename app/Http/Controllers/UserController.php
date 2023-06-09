@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\Site_settings;
 
 class UserController extends Controller
 {
@@ -34,6 +35,28 @@ class UserController extends Controller
         }
 
         Session::put('admin', $user);
-        return redirect()->route('admin.home');
+        return redirect()->route('admin.orders.index');
+    }
+
+    public function logout()
+    {
+        Session::pull('admin');
+
+        return redirect()->route('loginView');
+    }
+
+    public function settings()
+    {
+        return view('admin.settings');
+    }
+
+    public function settingsPost(Request $request)
+    {
+        $settings = Site_settings::where('id', 1)->first();
+        $settings->free_sauces = $request->free_sauces;
+        $settings->style = $request->style;
+        $settings->save();
+
+        return redirect()->route('admin.settings')->with('success', 'Instellingen opgeslagen');
     }
 }
