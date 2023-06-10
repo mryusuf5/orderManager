@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Orders;
 use App\Models\ProductCategories;
 use App\Models\sauces;
+use App\Models\supplements;
 use App\Models\Tables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -60,6 +61,7 @@ class TablesController extends Controller
         $table = Tables::where('id', $id)->firstOrFail();
         $categories = ProductCategories::with('products')->get();
         $sauces = sauces::all();
+        $supplements = supplements::all();
 
         $orders = Orders::join('products', 'products.id', '=', 'orders.product_id')
             ->select('orders.*', 'products.name', 'products.price', 'products.description', 'products.image')
@@ -72,7 +74,8 @@ class TablesController extends Controller
             'table',
             'categories',
             'sauces',
-            'orders'
+            'orders',
+            'supplements'
         ));
     }
 

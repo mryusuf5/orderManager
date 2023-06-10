@@ -23,7 +23,7 @@
     <h3>Producten</h3>
     <a href="#" class="btn btn-primary" data-bs-target="#newProduct" data-bs-toggle="modal">Nieuwe product</a>
     <br>
-    <div class="table-responsive">
+    <div class="table-responsive" style="min-width: 900px;">
         <table class="table table-striped">
             <thead>
                 <tr>

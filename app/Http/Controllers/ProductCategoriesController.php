@@ -78,7 +78,7 @@ class ProductCategoriesController extends Controller
         $this->checkImage($request, $category, 1);
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Categorie aangepast');
+        return redirect()->route('admin.productcategories.index')->with('success', 'Categorie aangepast');
     }
 
     /**

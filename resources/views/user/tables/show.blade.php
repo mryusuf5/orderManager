@@ -25,7 +25,7 @@
                 <x-slot name="image">{{asset('img/product/' . $product->image)}}</x-slot>
                 <x-slot name="id">{{$product->id}}</x-slot>
             </x-user.card>
-            <x-user.product-modal :sauces="$sauces">
+            <x-user.product-modal :sauces="$sauces" :supplements="$supplements">
                 <x-slot name="title">{{$product->name}}</x-slot>
                 <x-slot name="id">{{$product->id}}</x-slot>
                 <x-slot name="image">{{asset('img/product/' . $product->image)}}</x-slot>
@@ -109,7 +109,19 @@
                         @php
                             $totalPrice += $order->price;
                             $saucesOrder = explode(',', $order->sauces);
+                            $supplementsOrder = explode(',', $order->supplements)
                         @endphp
+
+                        @foreach($supplements as $supplement)
+                            @foreach($supplementsOrder as $supplementOrder)
+                                @if($supplement->name == $supplementOrder)
+                                    @php
+                                        $totalPrice += $supplement->price;
+                                    @endphp
+                                @endif
+                            @endforeach
+                        @endforeach
+
                         @if(count($saucesOrder) > $settings->free_sauces)
                             @foreach($saucesOrder as $index => $sauceOrder)
                                 @if($index + 1 > $settings->free_sauces)

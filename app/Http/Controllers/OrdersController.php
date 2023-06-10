@@ -6,6 +6,7 @@ use App\Models\Orders;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategories;
 use App\Models\sauces;
+use App\Models\supplements;
 use App\Models\Tables;
 use Illuminate\Http\Request;
 
@@ -76,6 +77,26 @@ class OrdersController extends Controller
             $order->sauces = $sauces;
         }
 
+        if($request->supplement)
+        {
+            $supplements = "";
+            $supplementsCount = count($request->supplement);
+            $i = 0;
+            foreach($request->supplement as $index => $supplement)
+            {
+                if(++$i === $supplementsCount)
+                {
+                    $supplements .= $supplement;
+                }
+                else
+                {
+                    $supplements .= $supplement . ',';
+                }
+            }
+
+            $order->supplements = $supplements;
+        }
+
         $order->save();
 
         return redirect()->route('userTable', $request->table)->with('success', 'Toegevoegd aan bestelling');
@@ -103,6 +124,9 @@ class OrdersController extends Controller
             ->where('paid', '0')
             ->get();
 
+        $sauces = sauces::all();
+        $supplements = supplements::all();
+
         $totalPrice = 0;
         foreach($orders as $order)
         {
@@ -112,7 +136,9 @@ class OrdersController extends Controller
 
         return view('admin.orders.edit', compact(
             'orders',
-        'totalPrice'));
+        'totalPrice',
+        'sauces',
+        'supplements'));
     }
 
     /**
