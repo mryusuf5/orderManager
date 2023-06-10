@@ -27,6 +27,6 @@
     <form action="{{route('admin.sauces.destroy', $sauce->id)}}" class="confirmForm" method="post">
         @csrf
         @method('DELETE')
-        <input type="submit" value="Delete" class="btn btn-danger">
+        <input type="submit" value="Verwijderen" class="btn btn-danger">
     </form>
 </x-admin.layout>

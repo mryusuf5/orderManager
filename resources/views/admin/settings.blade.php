@@ -40,6 +40,7 @@
         </div>
         <br>
         <div class="form-group">
+            <label>Thema:</label>
             <select name="style" class="form-control">
                 @foreach($themes as $theme)
                     <option value="{{$theme}}" @if($theme === $settings->style) selected @endif>{{$theme}}</option>

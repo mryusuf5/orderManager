@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('table_id')->nullable();
             $table->string('product_id')->nullable();
             $table->text('sauces')->nullable();
+            $table->text('supplements')->nullable();
             $table->text('remark')->nullable();
             $table->tinyInteger('ready')->default(0);
             $table->tinyInteger('paid')->default(0);

@@ -8,6 +8,7 @@ use App\Http\Controllers\TablesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SaucesController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\SupplementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,5 @@ Route::prefix('/admin')->name('admin.')->middleware('admin')->group(function(){
     Route::resource('products', ProductsController::class);
     Route::resource('tables', TablesController::class);
     Route::resource('sauces', SaucesController::class);
+    Route::resource('supplements', SupplementsController::class);
 });

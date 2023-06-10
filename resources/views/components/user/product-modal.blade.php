@@ -29,6 +29,17 @@
                         </div>
                     @endforeach
                     <hr>
+                    <h5>Extra supplementen</h5>
+                    @foreach($supplements as $supplement)
+                        <div class="form-check">
+                            <input class="form-check-input sauceCheckbox" name="supplement[]" type="checkbox"
+                                   value="{{$supplement->name}}">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{$supplement->name}} - &euro; {{number_format($supplement->price, 2, ',', '.')}}
+                            </label>
+                        </div>
+                    @endforeach
+                    <hr>
                     <div class="form-floating">
                         <textarea name="remark" class="form-control" placeholder="Opmerking" cols="30" rows="10"></textarea>
                         <label>Opmerking</label>
